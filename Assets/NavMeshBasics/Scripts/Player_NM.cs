@@ -19,6 +19,7 @@ public class Player_NM : MonoBehaviour
         CalculateAnimVelocity();
         if (Input.GetMouseButton(0))     // did we left click with the mouse?
         {
+            Debug.Log("mouse down");
             // extend a ray from the camera into the 3D world that points at the mouse click location
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             // check if the ray hits any world colliders
