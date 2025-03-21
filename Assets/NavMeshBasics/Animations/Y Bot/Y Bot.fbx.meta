@@ -1,24 +1,9 @@
 fileFormatVersion: 2
-guid: 69bf099345b832141b76254924644d51
+guid: 18d2a38015a9055468e99a76596e7018
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects:
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: maria_diffuse
-    second: {fileID: 2800000, guid: d596e0a2d35c9d547a4377247822968a, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: maria_normal
-    second: {fileID: 2800000, guid: 80c063b09ed30f145a4823845cce650a, type: 3}
-  - first:
-      type: UnityEngine:Texture2D
-      assembly: UnityEngine.CoreModule
-      name: maria_specular
-    second: {fileID: 2800000, guid: 7419d090ba89fa4428efb3e2e488a4ba, type: 3}
+  externalObjects: {}
   materials:
     materialImportMode: 2
     materialName: 0
