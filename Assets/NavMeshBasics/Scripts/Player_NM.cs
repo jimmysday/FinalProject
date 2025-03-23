@@ -26,6 +26,7 @@ public class Player_NM : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
+                Debug.Log(hit.point);
                 agent.SetDestination(hit.point);    // set the agent's destination to the ray's hit point
             }
         }
@@ -39,5 +40,13 @@ public class Player_NM : MonoBehaviour
     {
         anim.SetFloat("velocity", agent.velocity.magnitude / agent.speed);  // calculate % of full speed agent is moving
     }
-
+    private void OnDrawGizmos()
+    {
+        if (cam != null)  // Ensure the camera reference exists
+        {
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);  // Get the ray from the camera
+            Gizmos.color = Color.red;
+            Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * 100f);  // Extend the ray in the scene
+        }
+    }
 }
