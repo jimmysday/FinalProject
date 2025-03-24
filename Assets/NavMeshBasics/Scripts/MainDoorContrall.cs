@@ -4,7 +4,7 @@ public class MainDoorContrall : MonoBehaviour
 {
     private bool doorIsOpen = false;
     private Vector3 homePos;
-    private Vector3 closeOffset = new Vector3(-5, 0, 0);
+    private Vector3 closeOffset = new Vector3(-2, 0, 0);
     private float moveTime = 2.0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
