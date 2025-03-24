@@ -11,8 +11,8 @@ public class Enemy_NM : MonoBehaviour
     [SerializeField] private Transform target;      // the target to follow
 
     private float distanceToTarget = float.MaxValue;    // distance to target - default to far away
-    private float chaseRange = 10f;                     // when target is closer than this, chase!
-    private float attackRange = 2.0f;
+    private float chaseRange = 2f;                     // when target is closer than this, chase!
+    private float attackRange = 1f;
 
     private enum EnemyState { IDLE, CHASE };
     private EnemyState state;
