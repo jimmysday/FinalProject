@@ -30,6 +30,8 @@ public class Player_NM : MonoBehaviour
                 agent.SetDestination(hit.point);    // set the agent's destination to the ray's hit point
             }
         }
+
+
         if (Input.GetKeyDown(KeyCode.Space)) {
             anim.SetTrigger("attack");
         }
