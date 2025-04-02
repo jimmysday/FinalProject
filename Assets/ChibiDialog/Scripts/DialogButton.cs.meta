@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 691198f609904430fb6af4e93cdebdde
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 186637
+  packageName: Chibi Dialog Free
+  packageVersion: 1.0
+  assetPath: Assets/ChibiDialog/Scripts/DialogButton.cs
+  uploadId: 410378
