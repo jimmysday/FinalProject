@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class TreasureCotroller : MonoBehaviour
 {
+    [SerializeField] Animator anim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,7 +20,7 @@ public class TreasureCotroller : MonoBehaviour
         Debug.Log("OnTriggerEnter");
         if (other.tag == "Player")
         {
-            gameObject.SetActive(false);
+            anim.SetTrigger("treasureOpen");
         }
     }
 }
