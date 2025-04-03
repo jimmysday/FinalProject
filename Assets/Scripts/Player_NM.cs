@@ -9,6 +9,11 @@ public class Player_NM : MonoBehaviour
     [SerializeField] private NavMeshAgent agent;    // for moving on the NavMesh
     [SerializeField] private Camera cam;            // for shooting a ray into the 3D world
 
+    public LayerMask ground;
+    public LayerMask playobject;
+
+    private float actionRange = 1.5f;
+
     private void Start()
     {
         //agent.SetDestination(Vector3.zero);  // go to [0,0,0]
@@ -24,11 +29,56 @@ public class Player_NM : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             // check if the ray hits any world colliders
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit))
+
+    
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, ~0))
             {
-           //     Debug.Log(hit.point);
-                agent.SetDestination(hit.point);    // set the agent's destination to the ray's hit point
+                if (Input.GetMouseButton(0))
+                {
+                    //     Debug.Log(hit.point);
+                    agent.SetDestination(hit.point);    // set the agent's destination to the ray's hit point
+                    return ;
+                }
+
+                if (Input.GetMouseButton(1))
+                {
+                    GameObject clickedObject = hit.collider.gameObject;
+                    Debug.Log("Hit object: " + hit.collider.gameObject.name + " Layer: " + hit.collider.gameObject.layer);
+
+                    //                if (((1 << clickedObject.layer) & playobject) != 0)
+                    {
+                        Debug.Log("Clicked on a layer: "+ clickedObject.layer +" playobject: "+playobject.value +" name:"+ clickedObject.name);
+
+                        if (clickedObject.CompareTag("knight"))
+                        {
+                            Debug.Log("Clicked on a person: " + clickedObject.name);
+                            float distance = Vector3.Distance(transform.position, clickedObject.transform.position);
+
+                            Debug.Log("distance: " + distance);
+
+                            if (distance < actionRange)
+                            {
+                                anim.SetTrigger("attack");
+                                //Attack(clickedObject);
+                            }
+                        }
+                        else if (clickedObject.CompareTag("soldiers"))
+                        {
+                            Debug.Log("Clicked on an item: " + clickedObject.name);
+                            // Add item interaction logic here
+                        }
+                    }
+
+                    if (((1 << clickedObject.layer) & ground) != 0)
+                    {
+                        Debug.Log("Clicked on the ground, do nothing.");
+                        return;
+                    }
+                }
+
             }
+            
+
         }
 
 
