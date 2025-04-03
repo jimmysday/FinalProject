@@ -14,11 +14,12 @@ public class SoldierIdleState : SoldierStateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //timer += Time.deltaTime;
-        //if (timer > soldier.IdleTime)
-        //{
-        //    animator.SetTrigger("patrol");
-        //}
+        timer += Time.deltaTime;
+        //Debug.Log("idle update:" + timer);
+        if (timer > soldier.IdleTime)
+        {
+            animator.SetTrigger("patrol");
+        }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
