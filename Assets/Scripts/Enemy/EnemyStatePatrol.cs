@@ -8,7 +8,7 @@ public class EnemyStatePatrol : EnemyStateMachineBehaviour
         base.OnStateEnter(animator, stateInfo, layerIndex);
         enemy.DetermineNextWaypoint();
         enemy.Agent.SetDestination(enemy.GetCurrentWaypoint());
-        Debug.Log("distance: " + enemy.Agent.remainingDistance);
+       // Debug.Log("distance: " + enemy.Agent.remainingDistance);
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -20,7 +20,7 @@ public class EnemyStatePatrol : EnemyStateMachineBehaviour
         {
             if (enemy.Agent.remainingDistance <= enemy.Agent.stoppingDistance)
             {
-                Debug.Log("set to idle");
+              //  Debug.Log("set to idle");
 
                animator.SetTrigger("idle");
             }

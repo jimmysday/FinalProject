@@ -18,7 +18,7 @@ public class EnemyIdleState : EnemyStateMachineBehaviour
 
         if (enemy && (timer > enemy.IdleTime))
         {
-            Debug.Log("set to patrol");
+          //  Debug.Log("set to patrol");
             animator.SetTrigger("patrol");
         }
 

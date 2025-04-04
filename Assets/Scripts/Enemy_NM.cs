@@ -11,7 +11,7 @@ public class Enemy_NM : MonoBehaviour
     [SerializeField] private Transform target;      // the target to follow
 
     private float distanceToTarget = float.MaxValue;    // distance to target - default to far away
-    private float chaseRange = 2f;                     // when target is closer than this, chase!
+    private float chaseRange = 4f;                     // when target is closer than this, chase!
     private float attackRange = 1f;
 
     private enum EnemyState { IDLE, CHASE };
@@ -85,5 +85,6 @@ public class Enemy_NM : MonoBehaviour
     void CalculateAnimVelocity()
     {
         anim.SetFloat("velocity", agent.velocity.magnitude / agent.speed);  // calculate % of full speed agent is moving
+//        Debug.Log("agent.velocity.magnitude" + agent.velocity.magnitude);
     }
 }
