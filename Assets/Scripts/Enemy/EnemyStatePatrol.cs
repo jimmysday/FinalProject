@@ -18,14 +18,12 @@ public class EnemyStatePatrol : EnemyStateMachineBehaviour
         //Debug.Log("stoppingDistance: " + enemy.Agent.stoppingDistance);
         if (!enemy.Agent.pathPending)
         {
-            Debug.Log("Updated distance: " + enemy.Agent.remainingDistance);
-  
             if (enemy.Agent.remainingDistance <= enemy.Agent.stoppingDistance)
             {
                 Debug.Log("set to idle");
 
                animator.SetTrigger("idle");
-        }
+            }
         }
     }
 
