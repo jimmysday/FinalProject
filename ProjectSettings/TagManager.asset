@@ -11,6 +11,7 @@ TagManager:
   - treasure
   - knight
   - soldiers
+  - Waypoints
   layers:
   - Default
   - TransparentFX
