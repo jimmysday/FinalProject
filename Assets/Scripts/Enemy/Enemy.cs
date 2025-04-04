@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     public float AttackRangeStop { get; private set; } = 20.0f; // when player is farther than this, chase
 
     public GameObject Player { get; private set; }
-    public UnityEngine.AI.NavMeshAgent Agent { get; private set; }
+    public NavMeshAgent Agent { get; private set; }
 
     public List<Transform> Waypoints { get; private set; }      // waypoints for patrol state
     private int waypointIndex = 0;                              // current waypoint index
@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        Agent = GetComponent<UnityEngine.AI.NavMeshAgent>();                   // get a reference to the NavMeshAgent
+        Agent = GetComponent<NavMeshAgent>();                   // get a reference to the NavMeshAgent
         Agent.updateUpAxis = false;
         Player = GameObject.FindGameObjectWithTag("Player");    // get a reference to the Player
 
@@ -51,11 +51,13 @@ public class Enemy : MonoBehaviour
     {
         //pick a random waypoint
         waypointIndex = Random.Range(0, Waypoints.Count);
+        Debug.Log("waypointIndex: "+ waypointIndex);
     }
 
     public Vector3 GetCurrentWaypoint()
     {
         //return the current waypoint
+        Debug.Log("CurrentWaypoint: " + Waypoints[waypointIndex].position);
         return Waypoints[waypointIndex].position;
     }
 

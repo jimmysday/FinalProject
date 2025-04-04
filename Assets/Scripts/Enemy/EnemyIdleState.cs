@@ -8,6 +8,7 @@ public class EnemyIdleState : EnemyStateMachineBehaviour
     {
         base.OnStateEnter(animator, stateInfo, layerIndex);
         timer = 0;
+        enemy.Agent.SetDestination(enemy.transform.position);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -17,6 +18,7 @@ public class EnemyIdleState : EnemyStateMachineBehaviour
 
         if (enemy && (timer > enemy.IdleTime))
         {
+            Debug.Log("set to patrol");
             animator.SetTrigger("patrol");
         }
 
