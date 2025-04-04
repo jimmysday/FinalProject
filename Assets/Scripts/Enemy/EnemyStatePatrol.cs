@@ -24,6 +24,10 @@ public class EnemyStatePatrol : EnemyStateMachineBehaviour
 
                animator.SetTrigger("idle");
             }
+            else if(enemy.GetDistanceFromPlayer() < enemy.AttackRange)
+            {
+                animator.SetTrigger("attack");
+            }
         }
     }
 

@@ -3,21 +3,22 @@ using UnityEngine;
 public class EnemyAttackState : EnemyStateMachineBehaviour
 {
     //// OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    base.OnStateEnter(animator, stateInfo, layerIndex);
-    //    enemy.Agent.SetDestination(enemy.transform.position); //dont move
-    //}
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        base.OnStateEnter(animator, stateInfo, layerIndex);
+        enemy.Agent.SetDestination(enemy.transform.position); //dont move
+    }
 
     //// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    //enemy.transform.LookAt(enemy.Player.transform); //keep facing the player
-    //    //if(enemy.GetDistanceFromPlayer() > enemy.AttackRange)
-    //    //{
-    //    //    animator.SetTrigger("attack");
-    //    //}
-    //}
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        enemy.transform.LookAt(enemy.Player.transform.position); //keep facing the player
+        enemy.transform.Rotate(0, 90, 0);
+        if (enemy.GetDistanceFromPlayer() > enemy.AttackRange)
+        {
+            animator.SetTrigger("idle");
+        }
+    }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
