@@ -14,9 +14,13 @@ public class EnemyIdleState : EnemyStateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         timer += Time.deltaTime;
-        //if (timer > enemy.IdleTime) {
-        //    animator.SetTrigger("patrol");
-        //}
+
+        if (enemy && (timer > enemy.IdleTime))
+        {
+            Debug.Log("timer 1: " + timer);
+            animator.SetTrigger("patrol");
+        }
+
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
