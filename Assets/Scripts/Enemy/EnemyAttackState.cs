@@ -14,8 +14,11 @@ public class EnemyAttackState : EnemyStateMachineBehaviour
     {
         enemy.transform.LookAt(enemy.Player.transform.position); //keep facing the player
         enemy.transform.Rotate(0, 90, 0);
+    
         if (enemy.GetDistanceFromPlayer() > enemy.AttackRange)
         {
+            Debug.Log("GetDistanceFromPlayer: " + enemy.GetDistanceFromPlayer());
+            Debug.Log("set to idle");
             animator.SetTrigger("idle");
         }
     }
