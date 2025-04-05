@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -51,11 +52,12 @@ public class Player_NM : MonoBehaviour
                     //                if (((1 << clickedObject.layer) & playobject) != 0)
                     {
                         Debug.Log("Clicked on a layer: "+ clickedObject.layer +" playobject: "+playobject.value +" name:"+ clickedObject.name);
-
+                        float distance = Vector3.Distance(transform.position, clickedObject.transform.position);
+                        transform.LookAt(clickedObject.transform.position);
                         if (clickedObject.CompareTag("knight"))
                         {
                             Debug.Log("Clicked on a person: " + clickedObject.name);
-                            float distance = Vector3.Distance(transform.position, clickedObject.transform.position);
+     
 
                             Debug.Log("distance: " + distance);
 
@@ -67,8 +69,19 @@ public class Player_NM : MonoBehaviour
                         }
                         else if (clickedObject.CompareTag("soldiers"))
                         {
-                            Debug.Log("Clicked on an item: " + clickedObject.name);
+                            Debug.Log("Clicked on an soldiers: " + clickedObject.name);
                             // Add item interaction logic here
+                        }
+                        else if (clickedObject.CompareTag("archer")){
+                            if (distance < actionRange)
+                            {
+                                Debug.Log("attack on archer");
+                        //        clickedObject.GetComponent<Animator>().SetTrigger("Hit");
+                                anim.SetTrigger("attack");
+                                //Attack(clickedObject);
+                            }
+
+
                         }
                     }
 
@@ -112,7 +125,8 @@ public class Player_NM : MonoBehaviour
         Debug.Log("Health: " + health);
         if (health == 0)
         {
-            Debug.Break();
+            //Debug.Break();
+            Debug.Log("Player dead");
         }
     }
 }

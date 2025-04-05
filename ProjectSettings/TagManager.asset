@@ -12,6 +12,7 @@ TagManager:
   - knight
   - soldiers
   - Waypoints
+  - archer
   layers:
   - Default
   - TransparentFX

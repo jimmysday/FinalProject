@@ -63,7 +63,7 @@ public class Enemy_NM : MonoBehaviour
         }
         if(distanceToTarget <= attackRange)
         {
-            Debug.Log("attacking player");
+            Debug.Log("enemy attacking player");
             anim.SetBool("isnear",true);
         }
 
