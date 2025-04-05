@@ -67,7 +67,9 @@ public class Enemy : MonoBehaviour
         // spawn a projectile using the spawnPoint
         GameObject projectile = Instantiate(projectilePrefab, projectileSpawnPt.position, projectileSpawnPt.rotation);
         // move it forward
+        // After instantiating, rotate it if needed
+        //projectile.transform.Rotate(0, 90, 0); // Adjust value to correct the direction
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward * projectileForce, ForceMode.Impulse);
+        rb.AddForce(-transform.right * projectileForce, ForceMode.Impulse);
     }
 }
