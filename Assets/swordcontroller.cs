@@ -12,9 +12,10 @@ public class swordcontroller : MonoBehaviour
         {
             ac.Play();
             other.GetComponent<Animator>().SetTrigger("Hit");
-            Instantiate(HitParticle,new Vector3(other.transform.position.x,
-                transform.position.y, other.transform.position.z), 
-                other.transform.rotation);
+            //Instantiate(HitParticle,new Vector3(other.transform.position.x,
+            //    transform.position.y, other.transform.position.z), 
+            //    other.transform.rotation);
+            HitParticle.GetComponent<ParticleSystem>().Play();
         }
     }
 }
