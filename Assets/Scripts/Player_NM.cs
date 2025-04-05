@@ -9,6 +9,7 @@ public class Player_NM : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private NavMeshAgent agent;    // for moving on the NavMesh
     [SerializeField] private Camera cam;            // for shooting a ray into the 3D world
+    //[SerializeField] AudioSource ac;
 
     public LayerMask ground;
     public LayerMask playobject;
@@ -53,7 +54,7 @@ public class Player_NM : MonoBehaviour
                     {
                         Debug.Log("Clicked on a layer: "+ clickedObject.layer +" playobject: "+playobject.value +" name:"+ clickedObject.name);
                         float distance = Vector3.Distance(transform.position, clickedObject.transform.position);
-                        transform.LookAt(clickedObject.transform.position);
+
                         if (clickedObject.CompareTag("knight"))
                         {
                             Debug.Log("Clicked on a person: " + clickedObject.name);
@@ -75,9 +76,11 @@ public class Player_NM : MonoBehaviour
                         else if (clickedObject.CompareTag("archer")){
                             if (distance < actionRange)
                             {
+                                transform.LookAt(clickedObject.transform.position);
                                 Debug.Log("attack on archer");
                         //        clickedObject.GetComponent<Animator>().SetTrigger("Hit");
                                 anim.SetTrigger("attack");
+                               // ac.Play();
                                 //Attack(clickedObject);
                             }
 
