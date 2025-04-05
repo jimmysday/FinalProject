@@ -108,8 +108,9 @@ GameObject:
   - component: {fileID: 4087904655390051159}
   - component: {fileID: 4693412609660223697}
   - component: {fileID: 3946485547437323278}
-  - component: {fileID: 9045608802369591215}
   - component: {fileID: 2443470506262259149}
+  - component: {fileID: 4733169041608895144}
+  - component: {fileID: 8220108226003057622}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Untagged
@@ -127,7 +128,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.883508, y: 0.3321984, z: 7.34719}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.5}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3013006133696086805}
@@ -186,27 +187,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &9045608802369591215
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 863238302581485269}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &2443470506262259149
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -234,3 +214,38 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &4733169041608895144
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863238302581485269}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.8
+  m_Height: 1
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8220108226003057622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863238302581485269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8edc84b6e31b3d54d8a89928aeffa911, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -14,9 +14,12 @@ public class Player_NM : MonoBehaviour
 
     private float actionRange = 1.5f;
 
+    private int health;
+
     private void Start()
     {
         //agent.SetDestination(Vector3.zero);  // go to [0,0,0]
+        health = 100;
     }
 
     private void Update()
@@ -99,6 +102,17 @@ public class Player_NM : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);  // Get the ray from the camera
             Gizmos.color = Color.red;
             Gizmos.DrawLine(ray.origin, ray.origin + ray.direction * 100f);  // Extend the ray in the scene
+        }
+    }
+
+    public void Hit()
+    {
+        
+        health -= 5;
+        Debug.Log("Health: " + health);
+        if (health == 0)
+        {
+            Debug.Break();
         }
     }
 }

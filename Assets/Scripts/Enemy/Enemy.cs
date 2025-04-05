@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
     public float IdleTime { get; private set; } = 3.0f;         // time to spend in idle state
     public float ChaseRange { get; private set; } = 10.0f;      // when player is closer than this, chase
-    public float AttackRange { get; private set; } = 3.0f;      // when player is closer than this, attack
+    public float AttackRange { get; private set; } = 5.0f;      // when player is closer than this, attack
     public float AttackRangeStop { get; private set; } = 7.0f; // when player is farther than this, chase
 
     public GameObject Player { get; private set; }
