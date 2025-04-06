@@ -50,7 +50,7 @@ public class Player_NM : MonoBehaviour
                     GameObject clickedObject = hit.collider.gameObject;
                     Debug.Log("Hit object: " + hit.collider.gameObject.name + " Layer: " + hit.collider.gameObject.layer);
 
-                    //                if (((1 << clickedObject.layer) & playobject) != 0)
+                    //if (((1 << clickedObject.layer) & playobject) != 0)
                     {
                         Debug.Log("Clicked on a layer: "+ clickedObject.layer +" playobject: "+playobject.value +" name:"+ clickedObject.name);
                         float distance = Vector3.Distance(transform.position, clickedObject.transform.position);
