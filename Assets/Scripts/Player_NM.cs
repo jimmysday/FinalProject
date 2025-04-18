@@ -48,11 +48,11 @@ public class Player_NM : MonoBehaviour
                 if (Input.GetMouseButton(1))
                 {
                     GameObject clickedObject = hit.collider.gameObject;
-                    Debug.Log("Hit object: " + hit.collider.gameObject.name + " Layer: " + hit.collider.gameObject.layer);
+  //                  Debug.Log("Hit object: " + hit.collider.gameObject.name + " Layer: " + hit.collider.gameObject.layer);
 
                     //if (((1 << clickedObject.layer) & playobject) != 0)
                     {
-                        Debug.Log("Clicked on a layer: "+ clickedObject.layer +" playobject: "+playobject.value +" name:"+ clickedObject.name);
+   //                     Debug.Log("Clicked on a layer: "+ clickedObject.layer +" playobject: "+playobject.value +" name:"+ clickedObject.name);
                         float distance = Vector3.Distance(transform.position, clickedObject.transform.position);
 
                         if (clickedObject.CompareTag("knight"))
@@ -77,7 +77,7 @@ public class Player_NM : MonoBehaviour
                             if (distance < actionRange)
                             {
                                 transform.LookAt(clickedObject.transform.position);
-                                Debug.Log("attack on archer");
+                        //        Debug.Log("attack on archer");
                         //        clickedObject.GetComponent<Animator>().SetTrigger("Hit");
                                 anim.SetTrigger("attack");
                                // ac.Play();
@@ -125,7 +125,7 @@ public class Player_NM : MonoBehaviour
     {
         
         health -= 5;
-        Debug.Log("Health: " + health);
+        //Debug.Log("Health: " + health);
         if (health == 0)
         {
             //Debug.Break();

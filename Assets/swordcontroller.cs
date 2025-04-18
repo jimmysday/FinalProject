@@ -12,6 +12,7 @@ public class swordcontroller : MonoBehaviour
         {
             ac.Play();
             other.GetComponent<Animator>().SetTrigger("Hit");
+            Messenger.Broadcast(GameEvent.SWORD_ARCHOR);
             //Instantiate(HitParticle,new Vector3(other.transform.position.x,
             //    transform.position.y, other.transform.position.z), 
             //    other.transform.rotation);

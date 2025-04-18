@@ -16,7 +16,7 @@ public class arrow : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter arrow");
+        //Debug.Log("OnTriggerEnter arrow");
         Player_NM player = other.GetComponent<Player_NM>();
         if (player != null)
         {
