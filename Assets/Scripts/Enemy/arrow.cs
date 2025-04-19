@@ -20,7 +20,8 @@ public class arrow : MonoBehaviour
         Player_NM player = other.GetComponent<Player_NM>();
         if (player != null)
         {
-            player.Hit();
+            //player.Hit();
+            Messenger.Broadcast(GameEvent.ARROW_PLAYER);
             Destroy(this.gameObject);
         }
         
