@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
         Agent = GetComponent<NavMeshAgent>();                   // get a reference to the NavMeshAgent
         Agent.updateUpAxis = false;
         Player = GameObject.FindGameObjectWithTag("Player");    // get a reference to the Player
-        currentHealth = maxHealth;
+        //currentHealth = maxHealth;
 
         // Create and populate a list of waypoints
         Waypoints = new List<Transform>();
