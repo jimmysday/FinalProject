@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -20,11 +21,21 @@ public class Enemy : MonoBehaviour
     [SerializeField] public Transform projectileSpawnPt;        // spawn point for bullets    
     private float projectileForce = 35f;                        // force to shoot the projectile with
 
+    //[SerializeField] private enemyhealthbar healthbar;
+    [SerializeField] private Image healthFill; // Drag the Fill Image here in the Inspector
+
+    [SerializeField] Animator anim;
+    //[SerializeField] private Enemy archor;
+
+    private float maxHealth = 100f;
+    private float currentHealth = 100f;
+
     void Start()
     {
         Agent = GetComponent<NavMeshAgent>();                   // get a reference to the NavMeshAgent
         Agent.updateUpAxis = false;
         Player = GameObject.FindGameObjectWithTag("Player");    // get a reference to the Player
+        currentHealth = maxHealth;
 
         // Create and populate a list of waypoints
         Waypoints = new List<Transform>();
@@ -33,6 +44,11 @@ public class Enemy : MonoBehaviour
         {
             Waypoints.Add(t);
         }
+    }
+
+    void LateUpdate()
+    {
+        healthFill.transform.forward = Camera.main.transform.forward;
     }
 
     private void OnDrawGizmos()
@@ -71,6 +87,23 @@ public class Enemy : MonoBehaviour
         //projectile.transform.Rotate(0, 90, 0); // Adjust value to correct the direction
         Rigidbody rb = projectile.GetComponent<Rigidbody>();
         rb.AddForce(-transform.right * projectileForce, ForceMode.Impulse);
+    }
+
+    public void TakeDamage(float amount)
+    {
+        currentHealth -= amount;
+        //currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        if (currentHealth <= 0)
+        {
+            anim.SetTrigger("death");
+            Messenger.Broadcast(GameEvent.DEATH_ARCHOR);
+        }
+
+        if (healthFill != null)
+        {
+            Debug.Log("tackeDamage: " + currentHealth);
+            healthFill.fillAmount = currentHealth / maxHealth;
+        }
     }
     private void DeadEvent()
     {

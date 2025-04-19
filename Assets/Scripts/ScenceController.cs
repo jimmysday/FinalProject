@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ScenceController : MonoBehaviour
 {
-    [SerializeField] private enemyhealthbar enemybar;
+    [SerializeField] private Enemy archor;
     [SerializeField] private Player_NM player;
     [SerializeField] private UIManager manager;
     private float damageEnemy = 30;
@@ -17,11 +17,13 @@ public class ScenceController : MonoBehaviour
     {
         Messenger.AddListener(GameEvent.SWORD_ARCHOR, OnSwordArchor);
         Messenger.AddListener(GameEvent.ARROW_PLAYER, OnArrowPlayer);
+        Messenger.AddListener(GameEvent.DEATH_ARCHOR, OnArrowPlayer);
     }
     private void OnDestroy()
     {
         Messenger.RemoveListener(GameEvent.SWORD_ARCHOR, OnSwordArchor);
         Messenger.RemoveListener(GameEvent.ARROW_PLAYER, OnArrowPlayer);
+        Messenger.RemoveListener(GameEvent.DEATH_ARCHOR, OnArchorDead);
     }
     private void Start()
     {
@@ -30,11 +32,16 @@ public class ScenceController : MonoBehaviour
     }
     private void OnSwordArchor()
     {
-        enemybar.TakeDamage(damageEnemy);
+        archor.TakeDamage(damageEnemy);
     }
     private void OnArrowPlayer()
     {
         //player.Hit();
-        manager.UpdateHealth(5);
+        manager.UpdateHealth(1);
+    }
+    private void OnArchorDead()
+    {
+        //player.Hit();
+        //manager.UpdateHealth(1);
     }
 }

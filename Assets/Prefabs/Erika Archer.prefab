@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4247416747908643465}
   - component: {fileID: 6351842376590652751}
   - component: {fileID: 6442577478246116419}
-  - component: {fileID: 7399724800352470036}
   m_Layer: 5
   m_Name: enemyhealthbar
   m_TagString: Untagged
@@ -78,21 +77,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &7399724800352470036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968469485154277097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f86a73d793c2c94e92b8c561166aa60, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthFill: {fileID: 6442577478246116419}
-  archor: {fileID: 8486307399218913652}
-  maxHealth: 100
 --- !u!1 &4303038774060895082
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,6 +467,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7671028162151207039}
   m_SourcePrefab: {fileID: 100100000, guid: 32ae99a24cc04524aa39d9d49d079066, type: 3}
+--- !u!95 &4471831023214990433 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 32ae99a24cc04524aa39d9d49d079066, type: 3}
+  m_PrefabInstance: {fileID: 8027023355721656816}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7180108791491368097 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 32ae99a24cc04524aa39d9d49d079066, type: 3}
@@ -502,6 +491,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 863238302581485269, guid: e138b4279c7daa34388514ca77495c08, type: 3}
   projectileSpawnPt: {fileID: 901721911199768626}
+  healthFill: {fileID: 6442577478246116419}
+  anim: {fileID: 4471831023214990433}
 --- !u!195 &4387272277790525099
 NavMeshAgent:
   m_ObjectHideFlags: 0

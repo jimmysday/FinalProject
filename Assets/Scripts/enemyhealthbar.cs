@@ -1,3 +1,4 @@
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,7 +7,7 @@ public class enemyhealthbar : MonoBehaviour
     [SerializeField] private Image healthFill; // Drag the Fill Image here in the Inspector
     [SerializeField] private Enemy archor;
 
-    public float maxHealth = 100f;
+    private float maxHealth = 100f;
     private float currentHealth;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,6 +34,7 @@ public class enemyhealthbar : MonoBehaviour
         if (currentHealth <= 0)
         {
             archor.GetComponent<Animator>().SetTrigger("death");
+            Messenger.Broadcast(GameEvent.DEATH_ARCHOR);
         }
 
         if (healthFill != null)
