@@ -26,7 +26,7 @@ public class ScenceController : MonoBehaviour
     {
         Messenger.AddListener(GameEvent.SWORD_ARCHOR, OnSwordArchor);
         Messenger.AddListener(GameEvent.ARROW_PLAYER, OnArrowPlayer);
-        Messenger.AddListener(GameEvent.DEATH_ARCHOR, OnArrowPlayer);
+        Messenger.AddListener(GameEvent.DEATH_ARCHOR, OnArchorDead);
     }
     private void OnDestroy()
     {
@@ -50,7 +50,8 @@ public class ScenceController : MonoBehaviour
     }
     private void OnArchorDead()
     {
-        player.Hit();
+        //player.Hit();
+        Debug.Log("Killed an archer");
         manager.UpdateScore(50);
     }
 }

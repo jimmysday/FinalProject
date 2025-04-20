@@ -4,8 +4,8 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textscore;
-    private int playerscore = 0;
-    private int playerlevel = 1;
+    private float playerscore = 0;
+    private float playerlevel = 1;
 
     [SerializeField] private TextMeshProUGUI textplayer;
     private float playerhealth = 100f;
@@ -26,7 +26,7 @@ public class UIManager : MonoBehaviour
         
     }
 
-    public void UpdateHealth(int newHealth)
+    public void UpdateHealth(float newHealth)
     {
         playerhealth -= newHealth;
         textplayer.text = playerhealth.ToString() + "%";
@@ -34,10 +34,10 @@ public class UIManager : MonoBehaviour
     }
 
     // update score display
-    public void UpdateScore(int newScore)
+    public void UpdateScore(float newScore)
     {
         playerscore += newScore;
-        int nextlevelscore = playerlevel * playerlevel * 100;
+        float nextlevelscore = playerlevel * playerlevel * 100;
         if (playerscore >= nextlevelscore)
         {
             playerlevel++;
@@ -46,5 +46,6 @@ public class UIManager : MonoBehaviour
             nextlevelscore = playerlevel * playerlevel * 100;
         }
         textscore.text = playerscore.ToString() + "/" + nextlevelscore.ToString();
+        levelFill.fillAmount = playerscore / nextlevelscore;
     }
 }

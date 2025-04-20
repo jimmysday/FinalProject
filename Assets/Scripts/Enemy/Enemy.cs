@@ -111,9 +111,12 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            anim.SetTrigger("death");
-            healthFill.fillAmount = 0;
-            Messenger.Broadcast(GameEvent.DEATH_ARCHOR);
+            if (healthFill.fillAmount > 0)
+            {
+                anim.SetTrigger("death");
+                healthFill.fillAmount = 0;
+                Messenger.Broadcast(GameEvent.DEATH_ARCHOR);
+            }
         }
 
     }
