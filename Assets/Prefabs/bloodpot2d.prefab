@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6008454141624373032}
   - component: {fileID: 7991421151306337776}
   m_Layer: 5
-  m_Name: bloodpot
+  m_Name: bloodpot2d
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

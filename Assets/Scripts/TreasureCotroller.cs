@@ -1,8 +1,10 @@
+using System.Collections;
 using UnityEngine;
 
 public class TreasureCotroller : MonoBehaviour
 {
     [SerializeField] Animator anim;
+    [SerializeField] GameObject bottle;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,6 +23,17 @@ public class TreasureCotroller : MonoBehaviour
         if (other.tag == "Player")
         {
             anim.SetTrigger("treasureOpen");
+            StartCoroutine(Showbottle());
         }
+    }
+
+    private IEnumerator Showbottle()
+    {
+        // Enemy falls over and disappears after two seconds
+        //iTween.RotateAdd(this.gameObject, new Vector3(-75, 0, 0), 1);
+
+        yield return new WaitForSeconds(2);
+        Destroy(this.gameObject);
+        bottle.SetActive(true);
     }
 }
