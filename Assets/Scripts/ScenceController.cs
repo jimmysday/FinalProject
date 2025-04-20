@@ -7,6 +7,15 @@ public class ScenceController : MonoBehaviour
     [SerializeField] private UIManager manager;
     private float damageEnemy = 30;
 
+    //[SerializeField] private GameObject prefabArcher;
+    ////private GameObject enemy;
+    //private Vector3 spawnPoint = new Vector3(0, 0, 5);
+
+    //private int archorNumber = 3;
+    //private GameObject[] enemies; // Array to hold enemy instances
+
+
+
     // Update is called once per frame
     void Update()
     {
@@ -41,7 +50,7 @@ public class ScenceController : MonoBehaviour
     }
     private void OnArchorDead()
     {
-        //player.Hit();
-        //manager.UpdateHealth(1);
+        player.Hit();
+        manager.UpdateScore(50);
     }
 }

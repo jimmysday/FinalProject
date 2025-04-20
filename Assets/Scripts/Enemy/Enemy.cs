@@ -24,18 +24,20 @@ public class Enemy : MonoBehaviour
     //[SerializeField] private enemyhealthbar healthbar;
     [SerializeField] private Image healthFill; // Drag the Fill Image here in the Inspector
 
-    [SerializeField] Animator anim;
+    private Animator anim;
     //[SerializeField] private Enemy archor;
 
     private float maxHealth = 100f;
-    private float currentHealth = 100f;
+    private float archorHealth = 100f;
 
     void Start()
     {
         Agent = GetComponent<NavMeshAgent>();                   // get a reference to the NavMeshAgent
         Agent.updateUpAxis = false;
         Player = GameObject.FindGameObjectWithTag("Player");    // get a reference to the Player
-        //currentHealth = maxHealth;
+
+        archorHealth = 100f;
+        anim = GetComponent<Animator>();
 
         // Create and populate a list of waypoints
         Waypoints = new List<Transform>();
@@ -44,6 +46,8 @@ public class Enemy : MonoBehaviour
         {
             Waypoints.Add(t);
         }
+
+        Debug.Log("start health: "+ archorHealth);
     }
 
     void LateUpdate()
@@ -91,19 +95,27 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        currentHealth -= amount;
-        //currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        if (currentHealth <= 0)
+        Debug.Log("update 1 health: " + archorHealth);
+        archorHealth -= amount;
+        if (archorHealth > 0)
+        {
+            anim.SetTrigger("Hit");
+            Debug.Log("update 2 health: " + archorHealth);
+            //currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+            if (healthFill != null)
+            {
+                Debug.Log("tackeDamage: " + archorHealth);
+                healthFill.fillAmount = archorHealth / maxHealth;
+            }
+        }
+        else
         {
             anim.SetTrigger("death");
+            healthFill.fillAmount = 0;
             Messenger.Broadcast(GameEvent.DEATH_ARCHOR);
         }
 
-        if (healthFill != null)
-        {
-            Debug.Log("tackeDamage: " + currentHealth);
-            healthFill.fillAmount = currentHealth / maxHealth;
-        }
     }
     private void DeadEvent()
     {

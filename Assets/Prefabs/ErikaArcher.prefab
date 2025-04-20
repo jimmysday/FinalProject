@@ -467,11 +467,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7671028162151207039}
   m_SourcePrefab: {fileID: 100100000, guid: 32ae99a24cc04524aa39d9d49d079066, type: 3}
---- !u!95 &4471831023214990433 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 32ae99a24cc04524aa39d9d49d079066, type: 3}
-  m_PrefabInstance: {fileID: 8027023355721656816}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7180108791491368097 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 32ae99a24cc04524aa39d9d49d079066, type: 3}
@@ -492,7 +487,6 @@ MonoBehaviour:
   projectilePrefab: {fileID: 863238302581485269, guid: e138b4279c7daa34388514ca77495c08, type: 3}
   projectileSpawnPt: {fileID: 901721911199768626}
   healthFill: {fileID: 6442577478246116419}
-  anim: {fileID: 4471831023214990433}
 --- !u!195 &4387272277790525099
 NavMeshAgent:
   m_ObjectHideFlags: 0
