@@ -1,3 +1,4 @@
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class swordcontroller : MonoBehaviour
@@ -6,6 +7,7 @@ public class swordcontroller : MonoBehaviour
     public GameObject HitParticle;
     [SerializeField] AudioSource ac;
     [SerializeField] Player_NM player;
+   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void OnTriggerEnter(Collider other)
     {
@@ -26,6 +28,10 @@ public class swordcontroller : MonoBehaviour
                 //    other.transform.rotation);
                 HitParticle.GetComponent<ParticleSystem>().Play();
             }
+        }
+        else if(other.tag == "Bottle")
+        {
+
         }
     }
 }

@@ -13,6 +13,8 @@ TagManager:
   - soldiers
   - Waypoints
   - archer
+  - explosion
+  - Bottle
   layers:
   - Default
   - TransparentFX

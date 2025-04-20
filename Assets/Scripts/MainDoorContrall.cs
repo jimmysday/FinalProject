@@ -39,12 +39,12 @@ public class MainDoorContrall : MonoBehaviour
 
         if (doorIsOpen)
         {
-            Debug.Log("close door");
+        //    Debug.Log("close door");
             iTween.MoveTo(this.gameObject, homePos, moveTime);
         }
         else
         {
-            Debug.Log("open door");
+       //     Debug.Log("open door");
             iTween.MoveTo(this.gameObject, homePos + closeOffset, moveTime);
         }
         doorIsOpen = !doorIsOpen;

@@ -71,13 +71,13 @@ public class Enemy : MonoBehaviour
     {
         //pick a random waypoint
         waypointIndex = Random.Range(0, Waypoints.Count);
-        Debug.Log("waypointIndex: "+ waypointIndex);
+//        Debug.Log("waypointIndex: "+ waypointIndex);
     }
 
     public Vector3 GetCurrentWaypoint()
     {
         //return the current waypoint
-        Debug.Log("CurrentWaypoint: " + Waypoints[waypointIndex].position);
+ //       Debug.Log("CurrentWaypoint: " + Waypoints[waypointIndex].position);
         return Waypoints[waypointIndex].position;
     }
 
@@ -95,7 +95,7 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        Debug.Log("update 1 health: " + archorHealth);
+//        Debug.Log("update 1 health: " + archorHealth);
         archorHealth -= amount;
         if (archorHealth > 0)
         {

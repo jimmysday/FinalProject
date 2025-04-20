@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private Image healthFill;
     [SerializeField] private Image levelFill;
+    [SerializeField] private Inventory inventory;
+    [SerializeField] private GameObject healthPot;
     void Start()
     {
         UpdateScore(playerscore);
@@ -23,7 +25,19 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if (!inventory.IsActive())
+            {
+                SetGameActive(false);
+                inventory.Open();
+            }
+            else
+            {
+                inventory.Close();
+                SetGameActive(true);
+            }
+        }
     }
 
     public void UpdateHealth(float newHealth)
@@ -47,5 +61,28 @@ public class UIManager : MonoBehaviour
         }
         textscore.text = playerscore.ToString() + "/" + nextlevelscore.ToString();
         levelFill.fillAmount = playerscore / nextlevelscore;
+    }
+
+    public void updateinventory()
+    {
+        healthPot.SetActive(true);
+    }
+
+    public void SetGameActive(bool active)
+    {
+        if (active)
+        {
+            Time.timeScale = 1; // unpause the game
+            Cursor.lockState = CursorLockMode.Locked; // lock cursor at center
+            Cursor.visible = false; // hide cursor
+          //  crossHair.gameObject.SetActive(true); // show the crosshair
+        }
+        else
+        {
+            Time.timeScale = 0; // pause the game
+            Cursor.lockState = CursorLockMode.None; // let cursor move freely
+            Cursor.visible = true; // show the cursor
+        //    crossHair.gameObject.SetActive(false); // turn off the crosshair
+        }
     }
 }

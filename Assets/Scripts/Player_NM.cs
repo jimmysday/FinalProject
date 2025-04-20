@@ -9,7 +9,9 @@ public class Player_NM : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private NavMeshAgent agent;    // for moving on the NavMesh
     [SerializeField] private Camera cam;            // for shooting a ray into the 3D world
-    //[SerializeField] AudioSource ac;
+                                                    //[SerializeField] AudioSource ac;
+
+    [SerializeField] private BottleRotate bottle;
 
     public LayerMask ground;
     public LayerMask playobject;
@@ -83,8 +85,12 @@ public class Player_NM : MonoBehaviour
                                // ac.Play();
                                 //Attack(clickedObject);
                             }
-
-
+                        }
+                        else if (clickedObject.CompareTag("Bottle"))
+                        {
+                            Debug.Log("Found Bottle");
+                            bottle.gameObject.SetActive(false);
+                            Messenger.Broadcast(GameEvent.PICKUP_BOTTLE);
                         }
                     }
 
