@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textscore;
@@ -15,7 +16,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image healthFill;
     [SerializeField] private Image levelFill;
     [SerializeField] private Inventory inventory;
-    [SerializeField] private GameObject healthPot;
+    [SerializeField] private bloodpot bloodPot;
     void Start()
     {
         UpdateScore(playerscore);
@@ -29,20 +30,39 @@ public class UIManager : MonoBehaviour
         {
             if (!inventory.IsActive())
             {
-                SetGameActive(false);
+                //SetGameActive(false);
                 inventory.Open();
             }
             else
             {
                 inventory.Close();
-                SetGameActive(true);
+                //SetGameActive(true);
             }
         }
+        else if (Input.GetKeyDown(KeyCode.D))
+        {
+            if (bloodPot.IsActive() )
+            {
+                bloodPot.playaudio();
+                StartCoroutine(CloseAfterDelay());
+            }
+        }
+    }
+
+    private IEnumerator CloseAfterDelay()
+    {
+        yield return new WaitForSeconds(0.5f); // adjust based on your audio length
+        bloodPot.Close();
+        UpdateHealth(-50);
     }
 
     public void UpdateHealth(float newHealth)
     {
         playerhealth -= newHealth;
+        if(playerhealth > 100)
+        {
+            playerhealth = 100;
+        }
         textplayer.text = playerhealth.ToString() + "%";
         healthFill.fillAmount = playerhealth / maxhealth;
     }
@@ -65,7 +85,7 @@ public class UIManager : MonoBehaviour
 
     public void updateinventory()
     {
-        healthPot.SetActive(true);
+        bloodPot.gameObject.SetActive(true);
     }
 
     public void SetGameActive(bool active)
@@ -73,15 +93,15 @@ public class UIManager : MonoBehaviour
         if (active)
         {
             Time.timeScale = 1; // unpause the game
-            Cursor.lockState = CursorLockMode.Locked; // lock cursor at center
-            Cursor.visible = false; // hide cursor
+            //Cursor.lockState = CursorLockMode.Locked; // lock cursor at center
+            //Cursor.visible = false; // hide cursor
           //  crossHair.gameObject.SetActive(true); // show the crosshair
         }
         else
         {
             Time.timeScale = 0; // pause the game
-            Cursor.lockState = CursorLockMode.None; // let cursor move freely
-            Cursor.visible = true; // show the cursor
+            //Cursor.lockState = CursorLockMode.None; // let cursor move freely
+            //Cursor.visible = true; // show the cursor
         //    crossHair.gameObject.SetActive(false); // turn off the crosshair
         }
     }
