@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 
 public class Enemy_NM : MonoBehaviour
@@ -17,6 +19,10 @@ public class Enemy_NM : MonoBehaviour
     private enum EnemyState { IDLE, CHASE };
     private EnemyState state;
 
+    private float health;
+    private float maxHealth = 200f;
+    [SerializeField] private Image healthFill; // Drag the Fill Image here in the Inspector
+
     //void Update()
     //{
     //    agent.SetDestination(target.transform.position);  // follow the target
@@ -29,6 +35,7 @@ public class Enemy_NM : MonoBehaviour
     void Start()
     {
         SetState(EnemyState.IDLE);      // start off in the IDLE state
+        health = 200f;
     }
 
     void Update()
@@ -63,7 +70,7 @@ public class Enemy_NM : MonoBehaviour
         }
         if(distanceToTarget <= attackRange)
         {
-            Debug.Log("enemy attacking player");
+            //Debug.Log("enemy attacking player");
             anim.SetBool("isnear",true);
         }
 
@@ -86,5 +93,37 @@ public class Enemy_NM : MonoBehaviour
     {
         anim.SetFloat("velocity", agent.velocity.magnitude / agent.speed);  // calculate % of full speed agent is moving
 //        Debug.Log("agent.velocity.magnitude" + agent.velocity.magnitude);
+    }
+
+    public void TakeDamage(float amount)
+    {
+        //        Debug.Log("update 1 health: " + archorHealth);
+        health -= amount;
+        if (health > 0)
+        {
+            //anim.SetTrigger("Hit");
+            Debug.Log("update 2 health: " + health);
+            //currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+            if (healthFill != null)
+            {
+                Debug.Log("tackeDamage: " + health);
+                healthFill.fillAmount = health / maxHealth;
+            }
+        }
+        else
+        {
+            if (healthFill.fillAmount > 0)
+            {
+                anim.SetTrigger("death");
+                healthFill.fillAmount = 0;
+                Messenger.Broadcast(GameEvent.DEATH_ARCHOR);
+            }
+        }
+
+    }
+    private void DeadEvent()
+    {
+        Destroy(this.gameObject);
     }
 }

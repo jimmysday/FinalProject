@@ -16,7 +16,7 @@ public class Player_NM : MonoBehaviour
     public LayerMask ground;
     public LayerMask playobject;
 
-    private float actionRange = 1.5f;
+    private float actionRange = 2.0f;
 
     private int health;
 
@@ -44,6 +44,7 @@ public class Player_NM : MonoBehaviour
                 {
                     //     Debug.Log(hit.point);
                     agent.SetDestination(hit.point);    // set the agent's destination to the ray's hit point
+                    transform.LookAt(hit.point);
                     return ;
                 }
 
@@ -70,10 +71,19 @@ public class Player_NM : MonoBehaviour
                                 //Attack(clickedObject);
                             }
                         }
-                        else if (clickedObject.CompareTag("soldiers"))
+                        else if (clickedObject.CompareTag("Boss"))
                         {
-                            Debug.Log("Clicked on an soldiers: " + clickedObject.name);
+                            Debug.Log("Clicked on an boss: " + clickedObject.name);
                             // Add item interaction logic here
+                            if (distance < actionRange)
+                            {
+                                transform.LookAt(clickedObject.transform.position);
+                                //        Debug.Log("attack on archer");
+                                //        clickedObject.GetComponent<Animator>().SetTrigger("Hit");
+                                anim.SetTrigger("attack");
+                                // ac.Play();
+                                //Attack(clickedObject);
+                            }
                         }
                         else if (clickedObject.CompareTag("archer")){
                             if (distance < actionRange)
@@ -96,7 +106,7 @@ public class Player_NM : MonoBehaviour
 
                     if (((1 << clickedObject.layer) & ground) != 0)
                     {
-                        Debug.Log("Clicked on the ground, do nothing.");
+                        //Debug.Log("Clicked on the ground, do nothing.");
                         return;
                     }
                 }

@@ -7,6 +7,7 @@ public class swordcontroller : MonoBehaviour
     public GameObject HitParticle;
     [SerializeField] AudioSource ac;
     [SerializeField] Player_NM player;
+    [SerializeField] Enemy_NM boss;
    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void OnTriggerEnter(Collider other)
@@ -29,8 +30,12 @@ public class swordcontroller : MonoBehaviour
                 HitParticle.GetComponent<ParticleSystem>().Play();
             }
         }
-        else if(other.tag == "Bottle")
+        else if(other.tag == "Boss")
         {
+   //         ac.Play();
+    //        boss.TakeDamage(50);
+    //        HitParticle.GetComponent<ParticleSystem>().Play();
+            
 
         }
     }

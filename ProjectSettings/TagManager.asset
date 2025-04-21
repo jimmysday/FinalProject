@@ -15,6 +15,7 @@ TagManager:
   - archer
   - explosion
   - Bottle
+  - Boss
   layers:
   - Default
   - TransparentFX
