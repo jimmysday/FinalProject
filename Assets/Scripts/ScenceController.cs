@@ -5,7 +5,9 @@ public class ScenceController : MonoBehaviour
     [SerializeField] private Enemy archor;
     [SerializeField] private Player_NM player;
     [SerializeField] private UIManager manager;
-    private float damageEnemy = 30;
+    [SerializeField] private Enemy_NM boss;
+    private float damageEnemy = 40;
+    private float damageBoss = 30;
 
     //[SerializeField] private GameObject prefabArcher;
     ////private GameObject enemy;
@@ -25,6 +27,7 @@ public class ScenceController : MonoBehaviour
     private void Awake()
     {
         Messenger.AddListener(GameEvent.SWORD_ARCHOR, OnSwordArchor);
+        Messenger.AddListener(GameEvent.SWORD_BOSS, OnSwordBoss);
         Messenger.AddListener(GameEvent.ARROW_PLAYER, OnArrowPlayer);
         Messenger.AddListener(GameEvent.DEATH_ARCHOR, OnArchorDead);
         Messenger.AddListener(GameEvent.PICKUP_BOTTLE, OnPickupBottle);
@@ -32,6 +35,7 @@ public class ScenceController : MonoBehaviour
     private void OnDestroy()
     {
         Messenger.RemoveListener(GameEvent.SWORD_ARCHOR, OnSwordArchor);
+        Messenger.RemoveListener(GameEvent.SWORD_BOSS, OnSwordBoss);
         Messenger.RemoveListener(GameEvent.ARROW_PLAYER, OnArrowPlayer);
         Messenger.RemoveListener(GameEvent.DEATH_ARCHOR, OnArchorDead);
         Messenger.RemoveListener(GameEvent.PICKUP_BOTTLE, OnPickupBottle);
@@ -45,6 +49,12 @@ public class ScenceController : MonoBehaviour
     {
         archor.TakeDamage(damageEnemy);
     }
+
+    private void OnSwordBoss()
+    {
+        boss.TakeDamage(damageBoss);
+    }
+
     private void OnArrowPlayer()
     {
         //player.Hit();

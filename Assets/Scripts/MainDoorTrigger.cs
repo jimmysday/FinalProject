@@ -30,15 +30,17 @@ public class MainDoorTrigger : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
- //       Debug.Log("trigger enter");
+        Debug.Log("trigger enter");
         if (other.tag == "Player" ){
+            Debug.Log("enter trigger");
             doorControl.Operate();
         }
     }
     void OnTriggerExit(Collider other)
     {
- //       Debug.Log("trigger Exit");
+        Debug.Log("trigger Exit");
         if (other.tag == "Player" ){
+            Debug.Log("exit trigger");
             doorControl.Operate();
         }
     }

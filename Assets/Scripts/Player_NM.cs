@@ -12,6 +12,9 @@ public class Player_NM : MonoBehaviour
                                                     //[SerializeField] AudioSource ac;
 
     [SerializeField] private BottleRotate bottle;
+    [SerializeField] private GameObject key;
+
+    private bool ishavekey = false;
 
     public LayerMask ground;
     public LayerMask playobject;
@@ -101,6 +104,12 @@ public class Player_NM : MonoBehaviour
                             Debug.Log("Found Bottle");
                             bottle.gameObject.SetActive(false);
                             Messenger.Broadcast(GameEvent.PICKUP_BOTTLE);
+                        }
+                        else if (clickedObject.CompareTag("Key"))
+                        {
+                            Debug.Log("found a Key");
+                            key.SetActive(false);
+                            ishavekey = true;
                         }
                     }
 

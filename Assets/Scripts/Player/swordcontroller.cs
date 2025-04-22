@@ -21,22 +21,23 @@ public class swordcontroller : MonoBehaviour
             // Check if the current state is "Idle"
      //       if (stateInfo.IsName("Slash"))
             {
-                ac.Play();
+                
                 //other.GetComponent<Animator>().SetTrigger("Hit");
                 Messenger.Broadcast(GameEvent.SWORD_ARCHOR);
+                ac.Play();
+                HitParticle.GetComponent<ParticleSystem>().Play();
                 //Instantiate(HitParticle,new Vector3(other.transform.position.x,
                 //    transform.position.y, other.transform.position.z), 
                 //    other.transform.rotation);
-                HitParticle.GetComponent<ParticleSystem>().Play();
+
             }
         }
         else if(other.tag == "Boss")
         {
-   //         ac.Play();
-    //        boss.TakeDamage(50);
-    //        HitParticle.GetComponent<ParticleSystem>().Play();
-            
-
+            Messenger.Broadcast(GameEvent.SWORD_BOSS);
+            ac.Play();
+            HitParticle.GetComponent<ParticleSystem>().Play();
+           // boss.TakeDamage(50);           
         }
     }
 }

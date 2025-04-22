@@ -23,6 +23,8 @@ public class Enemy_NM : MonoBehaviour
     private float maxHealth = 200f;
     [SerializeField] private Image healthFill; // Drag the Fill Image here in the Inspector
 
+    [SerializeField] private GameObject key;
+
     //void Update()
     //{
     //    agent.SetDestination(target.transform.position);  // follow the target
@@ -49,6 +51,11 @@ public class Enemy_NM : MonoBehaviour
             case EnemyState.CHASE: Update_Chase(); break;
             default: Debug.Log("Invalid state!"); break;
         }
+    }
+
+    void LateUpdate()
+    {
+        healthFill.transform.forward = Camera.main.transform.forward;
     }
 
     void Update_Idle()
@@ -117,13 +124,15 @@ public class Enemy_NM : MonoBehaviour
             {
                 anim.SetTrigger("death");
                 healthFill.fillAmount = 0;
-                Messenger.Broadcast(GameEvent.DEATH_ARCHOR);
+ //               Messenger.Broadcast(GameEvent.DEATH_BOSS);
             }
         }
 
     }
     private void DeadEvent()
     {
-        Destroy(this.gameObject);
+        key.transform.position = this.gameObject.transform.position + new Vector3(0, 1, 0); 
+        key.SetActive(true);
+        Destroy(this.gameObject);     
     }
 }

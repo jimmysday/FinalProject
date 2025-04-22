@@ -16,6 +16,7 @@ TagManager:
   - explosion
   - Bottle
   - Boss
+  - Key
   layers:
   - Default
   - TransparentFX
