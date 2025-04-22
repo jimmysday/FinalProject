@@ -34,8 +34,6 @@ public class Player_NM : MonoBehaviour
         CalculateAnimVelocity();
         if (Input.GetMouseButton(0) || Input.GetMouseButton(1))      // did we left click with the mouse?
         {
-           // Debug.Log("mouse down");
-            // extend a ray from the camera into the 3D world that points at the mouse click location
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
             // check if the ray hits any world colliders
             RaycastHit hit;
@@ -45,73 +43,61 @@ public class Player_NM : MonoBehaviour
             {
                 if (Input.GetMouseButton(0))
                 {
-                    //     Debug.Log(hit.point);
                     agent.SetDestination(hit.point);    // set the agent's destination to the ray's hit point
-                    transform.LookAt(hit.point);
+                 //   transform.LookAt(hit.point);
                     return ;
                 }
 
                 if (Input.GetMouseButton(1))
                 {
                     GameObject clickedObject = hit.collider.gameObject;
-  //                  Debug.Log("Hit object: " + hit.collider.gameObject.name + " Layer: " + hit.collider.gameObject.layer);
 
-                    //if (((1 << clickedObject.layer) & playobject) != 0)
+                    float distance = Vector3.Distance(transform.position, clickedObject.transform.position);
+
+                    if (clickedObject.CompareTag("knight"))
                     {
-   //                     Debug.Log("Clicked on a layer: "+ clickedObject.layer +" playobject: "+playobject.value +" name:"+ clickedObject.name);
-                        float distance = Vector3.Distance(transform.position, clickedObject.transform.position);
-
-                        if (clickedObject.CompareTag("knight"))
-                        {
-                            Debug.Log("Clicked on a person: " + clickedObject.name);
+                        Debug.Log("Clicked on a person: " + clickedObject.name);
      
 
-                            Debug.Log("distance: " + distance);
+                        Debug.Log("distance: " + distance);
 
-                            if (distance < actionRange)
-                            {
-                                anim.SetTrigger("attack");
-                                //Attack(clickedObject);
-                            }
-                        }
-                        else if (clickedObject.CompareTag("Boss"))
+                        if (distance < actionRange)
                         {
-                            Debug.Log("Clicked on an boss: " + clickedObject.name);
-                            // Add item interaction logic here
-                            if (distance < actionRange)
-                            {
-                                transform.LookAt(clickedObject.transform.position);
-                                //        Debug.Log("attack on archer");
-                                //        clickedObject.GetComponent<Animator>().SetTrigger("Hit");
-                                anim.SetTrigger("attack");
-                                // ac.Play();
-                                //Attack(clickedObject);
-                            }
-                        }
-                        else if (clickedObject.CompareTag("archer")){
-                            if (distance < actionRange)
-                            {
-                                transform.LookAt(clickedObject.transform.position);
-                        //        Debug.Log("attack on archer");
-                        //        clickedObject.GetComponent<Animator>().SetTrigger("Hit");
-                                anim.SetTrigger("attack");
-                               // ac.Play();
-                                //Attack(clickedObject);
-                            }
-                        }
-                        else if (clickedObject.CompareTag("Bottle"))
-                        {
-                            Debug.Log("Found Bottle");
-                            bottle.gameObject.SetActive(false);
-                            Messenger.Broadcast(GameEvent.PICKUP_BOTTLE);
-                        }
-                        else if (clickedObject.CompareTag("Key"))
-                        {
-                            Debug.Log("found a Key");
-                            key.SetActive(false);
-                            ishavekey = true;
+                            anim.SetTrigger("attack");
                         }
                     }
+                    else if (clickedObject.CompareTag("Boss"))
+                    {
+                        Debug.Log("Clicked on an boss: " + clickedObject.name);
+                        // Add item interaction logic here
+                        if (distance < actionRange)
+                        {
+                            transform.LookAt(clickedObject.transform.position);
+                            anim.SetTrigger("attack");
+
+                        }
+                    }
+                    else if (clickedObject.CompareTag("archer")){
+                        if (distance < actionRange)
+                        {
+                            transform.LookAt(clickedObject.transform.position);
+                            anim.SetTrigger("attack");
+
+                        }
+                    }
+                    else if (clickedObject.CompareTag("Bottle"))
+                    {
+                        Debug.Log("Found Bottle");
+                        bottle.gameObject.SetActive(false);
+                        Messenger.Broadcast(GameEvent.PICKUP_BOTTLE);
+                    }
+                    else if (clickedObject.CompareTag("Key"))
+                    {
+                        Debug.Log("found a Key");
+                        key.SetActive(false);
+                        ishavekey = true;
+                    }
+                    
 
                     if (((1 << clickedObject.layer) & ground) != 0)
                     {
@@ -126,9 +112,6 @@ public class Player_NM : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
-            anim.SetTrigger("attack");
-        }
     }
 
     // Unused for now, but if later, you want to add animations, call this to determine velocity param for a 1D blend tree.
