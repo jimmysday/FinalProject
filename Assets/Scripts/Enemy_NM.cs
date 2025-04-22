@@ -23,7 +23,9 @@ public class Enemy_NM : MonoBehaviour
     private float maxHealth = 200f;
     [SerializeField] private Image healthFill; // Drag the Fill Image here in the Inspector
 
-    [SerializeField] private GameObject key;
+    [SerializeField] private GameObject endlight;
+    [SerializeField] private GameObject enddoor;
+
 
     //void Update()
     //{
@@ -131,8 +133,8 @@ public class Enemy_NM : MonoBehaviour
     }
     private void DeadEvent()
     {
-        key.transform.position = this.gameObject.transform.position + new Vector3(0, 1, 0); 
-        key.SetActive(true);
+        endlight.SetActive(true);
+        enddoor.SetActive(true);
         Destroy(this.gameObject);     
     }
 }
