@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ScenceController : MonoBehaviour
 {
@@ -31,6 +32,8 @@ public class ScenceController : MonoBehaviour
         Messenger.AddListener(GameEvent.ARROW_PLAYER, OnArrowPlayer);
         Messenger.AddListener(GameEvent.DEATH_ARCHOR, OnArchorDead);
         Messenger.AddListener(GameEvent.PICKUP_BOTTLE, OnPickupBottle);
+        Messenger.AddListener(GameEvent.NEXT_LEVEL, OnNextLevel);
+        Messenger.AddListener(GameEvent.CHAT_KNIGHT, OnChatKnight);
     }
     private void OnDestroy()
     {
@@ -39,6 +42,8 @@ public class ScenceController : MonoBehaviour
         Messenger.RemoveListener(GameEvent.ARROW_PLAYER, OnArrowPlayer);
         Messenger.RemoveListener(GameEvent.DEATH_ARCHOR, OnArchorDead);
         Messenger.RemoveListener(GameEvent.PICKUP_BOTTLE, OnPickupBottle);
+        Messenger.RemoveListener(GameEvent.NEXT_LEVEL, OnNextLevel);
+        Messenger.RemoveListener(GameEvent.CHAT_KNIGHT, OnNextLevel);
     }
     private void Start()
     {
@@ -71,5 +76,15 @@ public class ScenceController : MonoBehaviour
     {
         Debug.Log("OnPickupBottle");
         manager.updateinventory();
+    }
+
+    private void OnNextLevel()
+    {
+        SceneManager.LoadScene("NextLevel_Scene");
+    }
+
+    private void OnChatKnight() 
+    {
+        manager.updateDialog();
     }
 }

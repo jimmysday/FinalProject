@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image levelFill;
     [SerializeField] private Inventory inventory;
     [SerializeField] private bloodpot bloodPot;
+    [SerializeField] private GameObject dialog;
+    [SerializeField] private GameObject knight;
     void Start()
     {
         UpdateScore(playerscore);
@@ -86,6 +88,21 @@ public class UIManager : MonoBehaviour
     public void updateinventory()
     {
         bloodPot.gameObject.SetActive(true);
+    }
+
+    public void updateDialog()
+    {
+        SetGameActive(false);
+        dialog.SetActive(true);
+
+    }
+
+    public void CloseDialog()
+    {
+        Debug.Log("close dialog!");
+        dialog.SetActive(false);
+        knight.SetActive(false);
+        SetGameActive(true);
     }
 
     public void SetGameActive(bool active)

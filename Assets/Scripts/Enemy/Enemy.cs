@@ -47,7 +47,6 @@ public class Enemy : MonoBehaviour
             Waypoints.Add(t);
         }
 
-        Debug.Log("start health: "+ archorHealth);
     }
 
     void LateUpdate()

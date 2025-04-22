@@ -15,7 +15,7 @@ public class Player_NM : MonoBehaviour
     [SerializeField] private BottleRotate bottle;
     [SerializeField] private GameObject key;
 
-    private bool ishavekey = false;
+    //private bool ishavekey = false;
 
     public LayerMask ground;
     public LayerMask playobject;
@@ -57,14 +57,10 @@ public class Player_NM : MonoBehaviour
 
                     if (clickedObject.CompareTag("knight"))
                     {
-                        Debug.Log("Clicked on a person: " + clickedObject.name);
-     
-
-                        Debug.Log("distance: " + distance);
-
                         if (distance < actionRange)
                         {
-                            anim.SetTrigger("attack");
+                            Debug.Log("chating with knigt");
+                            Messenger.Broadcast(GameEvent.CHAT_KNIGHT);
                         }
                     }
                     else if (clickedObject.CompareTag("Boss"))
@@ -96,7 +92,7 @@ public class Player_NM : MonoBehaviour
                     {
                         Debug.Log("found a Key");
                         key.SetActive(false);
-                        ishavekey = true;
+                   //     ishavekey = true;
                     }
                     
 
@@ -144,10 +140,11 @@ public class Player_NM : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("end door trigger enter");
+//        Debug.Log("end door trigger enter");
         if (other.tag == "EndDoor")
         {
             Debug.Log("enter end door trigger");
+            Messenger.Broadcast(GameEvent.NEXT_LEVEL);
         }
     }
 }
