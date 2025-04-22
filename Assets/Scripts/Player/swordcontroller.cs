@@ -34,6 +34,7 @@ public class swordcontroller : MonoBehaviour
         }
         else if(other.tag == "Boss")
         {
+            Debug.Log("attack boss");
             Messenger.Broadcast(GameEvent.SWORD_BOSS);
             ac.Play();
             HitParticle.GetComponent<ParticleSystem>().Play();
