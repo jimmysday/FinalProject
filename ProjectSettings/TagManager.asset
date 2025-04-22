@@ -17,6 +17,7 @@ TagManager:
   - Bottle
   - Boss
   - Key
+  - EndDoor
   layers:
   - Default
   - TransparentFX

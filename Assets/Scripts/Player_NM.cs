@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -138,6 +139,15 @@ public class Player_NM : MonoBehaviour
         {
             //Debug.Break();
             Debug.Log("Player dead");
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("end door trigger enter");
+        if (other.tag == "EndDoor")
+        {
+            Debug.Log("enter end door trigger");
         }
     }
 }
