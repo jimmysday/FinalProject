@@ -65,7 +65,7 @@ public class UIManager : MonoBehaviour
         {
             playerhealth = maxhealth;
         }
-        textplayer.text = playerhealth.ToString() + "%";
+        textplayer.text = (playerhealth/ maxhealth).ToString() + "%";
         healthFill.fillAmount = playerhealth / maxhealth;
     }
 

@@ -12,11 +12,10 @@ public class ScenceController : MonoBehaviour
 
     //[SerializeField] private GameObject prefabArcher;
     ////private GameObject enemy;
-    //private Vector3 spawnPoint = new Vector3(0, 0, 5);
+    //private Vector3 spawnPoint = new Vector3(-1, 0, 4);
 
     //private int archorNumber = 3;
-    //private GameObject[] enemies; // Array to hold enemy instances
-
+    //private GameObject[] archers; // Array to hold enemy instances
 
 
     // Update is called once per frame
