@@ -126,7 +126,7 @@ public class Enemy_NM : MonoBehaviour
             {
                 anim.SetTrigger("death");
                 healthFill.fillAmount = 0;
- //               Messenger.Broadcast(GameEvent.DEATH_BOSS);
+                Messenger.Broadcast(GameEvent.DEATH_BOSS);
             }
         }
 

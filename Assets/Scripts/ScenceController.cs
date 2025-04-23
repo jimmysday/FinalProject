@@ -31,6 +31,7 @@ public class ScenceController : MonoBehaviour
         Messenger.AddListener(GameEvent.SWORD_BOSS, OnSwordBoss);
         Messenger.AddListener(GameEvent.ARROW_PLAYER, OnArrowPlayer);
         Messenger.AddListener(GameEvent.DEATH_ARCHOR, OnArchorDead);
+        Messenger.AddListener(GameEvent.DEATH_BOSS, OnBossDead);
         Messenger.AddListener(GameEvent.PICKUP_BOTTLE, OnPickupBottle);
         Messenger.AddListener(GameEvent.NEXT_LEVEL, OnNextLevel);
         Messenger.AddListener(GameEvent.CHAT_KNIGHT, OnChatKnight);
@@ -41,6 +42,7 @@ public class ScenceController : MonoBehaviour
         Messenger.RemoveListener(GameEvent.SWORD_BOSS, OnSwordBoss);
         Messenger.RemoveListener(GameEvent.ARROW_PLAYER, OnArrowPlayer);
         Messenger.RemoveListener(GameEvent.DEATH_ARCHOR, OnArchorDead);
+        Messenger.RemoveListener(GameEvent.DEATH_BOSS, OnBossDead);
         Messenger.RemoveListener(GameEvent.PICKUP_BOTTLE, OnPickupBottle);
         Messenger.RemoveListener(GameEvent.NEXT_LEVEL, OnNextLevel);
         Messenger.RemoveListener(GameEvent.CHAT_KNIGHT, OnNextLevel);
@@ -70,6 +72,11 @@ public class ScenceController : MonoBehaviour
         //player.Hit();
         Debug.Log("Killed an archer");
         manager.UpdateScore(50);
+    }
+
+    private void OnBossDead()
+    {
+        manager.UpdateScore(100);
     }
 
     private void OnPickupBottle()

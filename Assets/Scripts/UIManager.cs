@@ -61,9 +61,9 @@ public class UIManager : MonoBehaviour
     public void UpdateHealth(float newHealth)
     {
         playerhealth -= newHealth;
-        if(playerhealth > 100)
+        if(playerhealth > maxhealth)
         {
-            playerhealth = 100;
+            playerhealth = maxhealth;
         }
         textplayer.text = playerhealth.ToString() + "%";
         healthFill.fillAmount = playerhealth / maxhealth;
@@ -81,7 +81,7 @@ public class UIManager : MonoBehaviour
             UpdateHealth(0);
             nextlevelscore = playerlevel * playerlevel * 100;
         }
-        textscore.text = playerscore.ToString() + "/" + nextlevelscore.ToString();
+        textscore.text = "L" + playerlevel.ToString() + "             " + playerscore.ToString() + "/" + nextlevelscore.ToString();
         levelFill.fillAmount = playerscore / nextlevelscore;
     }
 
