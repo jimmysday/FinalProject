@@ -13,7 +13,7 @@ public class Player_NM : MonoBehaviour
                                                     //[SerializeField] AudioSource ac;
 
     [SerializeField] private BottleRotate bottle;
-    [SerializeField] private GameObject key;
+    //[SerializeField] private GameObject key;
 
     //private bool ishavekey = false;
 
@@ -91,7 +91,7 @@ public class Player_NM : MonoBehaviour
                     else if (clickedObject.CompareTag("Key"))
                     {
                         Debug.Log("found a Key");
-                        key.SetActive(false);
+                   //     key.SetActive(false);
                    //     ishavekey = true;
                     }
                     

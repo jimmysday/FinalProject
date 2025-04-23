@@ -23,7 +23,7 @@ public class swordcontroller : MonoBehaviour
             {
                 
                 //other.GetComponent<Animator>().SetTrigger("Hit");
-                Messenger.Broadcast(GameEvent.SWORD_ARCHOR);
+                Messenger<Enemy>.Broadcast(GameEvent.SWORD_ARCHOR, (Enemy)(other.GetComponent<Enemy>()));
                 ac.Play();
                 HitParticle.GetComponent<ParticleSystem>().Play();
                 //Instantiate(HitParticle,new Vector3(other.transform.position.x,

@@ -3,19 +3,38 @@ using UnityEngine.SceneManagement;
 
 public class ScenceController : MonoBehaviour
 {
-    [SerializeField] private Enemy archor;
+   // [SerializeField] private Enemy archor;
     [SerializeField] private Player_NM player;
     [SerializeField] private UIManager manager;
     [SerializeField] private Enemy_NM boss;
     private float damageEnemy = 40;
     private float damageBoss = 30;
 
-    //[SerializeField] private GameObject prefabArcher;
-    ////private GameObject enemy;
-    //private Vector3 spawnPoint = new Vector3(-1, 0, 4);
+    [SerializeField] private GameObject enemyPrefab;
+    //private GameObject enemy;
+    private Vector3 spawnPoint = new Vector3(-1, 0, 4);
 
-    //private int archorNumber = 3;
-    //private GameObject[] archers; // Array to hold enemy instances
+    private int enemyNumber = 2;
+    private GameObject[] enemies; // Array to hold enemy instances
+
+    private void Start()
+    {
+        enemies = new GameObject[enemyNumber];
+        // Loop through the array and instantiate enemies at the start
+        for (int i = 0; i < enemyNumber; i++)
+        {
+            SpawnEnemy(i);
+        }
+    }
+
+    // Helper function to spawn an enemy
+    private void SpawnEnemy(int index)
+    {
+        enemies[index] = Instantiate(enemyPrefab) as GameObject;
+        enemies[index].transform.position = spawnPoint;
+      //  float angle = Random.Range(0, 360); // Random rotation angle
+      //  enemies[index].transform.Rotate(0, angle, 0); // Apply rotation
+    }
 
 
     // Update is called once per frame
@@ -26,7 +45,7 @@ public class ScenceController : MonoBehaviour
 
     private void Awake()
     {
-        Messenger.AddListener(GameEvent.SWORD_ARCHOR, OnSwordArchor);
+        Messenger<Enemy>.AddListener(GameEvent.SWORD_ARCHOR, OnSwordArchor);
         Messenger.AddListener(GameEvent.SWORD_BOSS, OnSwordBoss);
         Messenger.AddListener(GameEvent.ARROW_PLAYER, OnArrowPlayer);
         Messenger.AddListener(GameEvent.DEATH_ARCHOR, OnArchorDead);
@@ -37,7 +56,7 @@ public class ScenceController : MonoBehaviour
     }
     private void OnDestroy()
     {
-        Messenger.RemoveListener(GameEvent.SWORD_ARCHOR, OnSwordArchor);
+        Messenger<Enemy>.RemoveListener(GameEvent.SWORD_ARCHOR, OnSwordArchor);
         Messenger.RemoveListener(GameEvent.SWORD_BOSS, OnSwordBoss);
         Messenger.RemoveListener(GameEvent.ARROW_PLAYER, OnArrowPlayer);
         Messenger.RemoveListener(GameEvent.DEATH_ARCHOR, OnArchorDead);
@@ -46,14 +65,17 @@ public class ScenceController : MonoBehaviour
         Messenger.RemoveListener(GameEvent.NEXT_LEVEL, OnNextLevel);
         Messenger.RemoveListener(GameEvent.CHAT_KNIGHT, OnNextLevel);
     }
-    private void Start()
+    private void OnSwordArchor(Enemy ar)
     {
-        //ui.UpdateScore(score);
-        // other initializations that already exist
-    }
-    private void OnSwordArchor()
-    {
-        archor.TakeDamage(damageEnemy);
+        for (int i = 0; i < enemyNumber; i++)
+        {
+            if (enemies[i])
+            {
+                if (enemies[i].GetComponent<Enemy>() == ar)
+                    ar.TakeDamage(damageEnemy);
+            }
+        }
+        
     }
 
     private void OnSwordBoss()
